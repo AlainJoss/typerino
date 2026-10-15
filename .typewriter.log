@@ -1,0 +1,208 @@
+
+  TYPEWRITER
+  Open:    http://127.0.0.1:8765/
+  Essays:  /Users/alain/Desktop/TYPEWRITER/essays
+  Stop:    Ctrl+C
+
+[15/Oct/2026 15:42:19] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:42:19] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:42:19] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:42:19] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:42:29] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 15:42:30] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:42:30] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:42:30] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:42:30] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:50:09] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 15:50:09] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:50:09] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:50:09] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:50:09] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:51:43] "GET /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:51:46] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:51:53] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:51:58] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:52:00] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:52:08] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:52:09] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:52:12] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:52:25] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:52:39] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:53:50] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:53:50] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:53:50] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:53:50] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:54:46] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 15:54:46] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:54:46] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:54:46] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:54:46] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:54:50] "GET /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:54:53] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:54:55] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:14] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 15:55:14] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:55:14] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:55:14] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:14] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:55:16] "GET /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:20] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:22] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:23] "GET /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:27] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:28] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 15:55:28] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:55:28] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:55:28] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:28] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:55:29] "GET /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:32] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:32] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:34] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:42] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 15:55:42] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:55:42] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:55:42] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:42] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:55:43] "GET /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:46] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:46] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:49] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:55:49] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:55:49] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:55:49] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:55:52] "GET /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:55:54] "PUT /api/essays/untitled-essay--926a26b3f2 HTTP/1.1" 200 -
+[15/Oct/2026 15:56:19] "GET /api/info HTTP/1.1" 200 -
+/Users/alain/Desktop/TYPEWRITER/Typewriter.app/Contents/Resources/start-server.sh: line 12: 27802 Terminated: 15          python3 launch.py
+
+  TYPEWRITER
+  Open:    http://127.0.0.1:8765/
+  Essays:  /Users/alain/Desktop/TYPEWRITER/essays
+  Stop:    Ctrl+C
+
+[15/Oct/2026 15:56:33] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:56:33] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:56:33] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:56:33] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 15:56:38] "GET /api/essays HTTP/1.1" 200 -
+button returned:OK
+[15/Oct/2026 15:56:41] "GET /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 15:59:21] "GET /api/info HTTP/1.1" 200 -
+/Users/alain/Desktop/TYPEWRITER/Typewriter.app/Contents/Resources/start-server.sh: line 12: 29643 Terminated: 15          python3 "$(dirname -- "$0")/launch.py"
+
+  TYPEWRITER
+  Open:    http://127.0.0.1:8765/
+  Essays:  /Users/alain/Desktop/TYPEWRITER/essays
+  Stop:    Ctrl+C
+
+[15/Oct/2026 15:59:22] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 15:59:22] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 15:59:22] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 15:59:22] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 15:59:22] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 15:59:22] "GET /favicon.ico HTTP/1.1" 204 -
+button returned:OK
+[15/Oct/2026 15:59:25] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 15:59:42] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:00:02] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:00:23] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:00:35] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 16:00:42] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:00:50] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:00:51] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:01:02] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:01:09] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:01:10] "GET /api/heartbeat HTTP/1.1" 200 -
+No tab heartbeat for three minutes; stopping Typewriter.
+
+  TYPEWRITER
+  Open:    http://127.0.0.1:8765/
+  Essays:  /Users/alain/Desktop/TYPEWRITER/essays
+  Stop:    Ctrl+C
+
+[15/Oct/2026 16:05:18] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 16:05:18] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 16:05:18] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:18] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 16:05:18] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:18] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 16:05:19] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 16:05:19] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 16:05:19] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 16:05:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:19] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 16:05:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:19] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 16:05:20] "GET /api/info HTTP/1.1" 200 -
+Opened the running Typewriter.
+[15/Oct/2026 16:05:20] "GET / HTTP/1.1" 200 -
+[15/Oct/2026 16:05:20] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:20] "GET /style.css HTTP/1.1" 200 -
+[15/Oct/2026 16:05:20] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:20] "GET /api/essays HTTP/1.1" 200 -
+[15/Oct/2026 16:05:20] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:20] "GET /favicon.ico HTTP/1.1" 204 -
+[15/Oct/2026 16:05:28] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:28] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:29] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:29] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:38] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:38] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:39] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:40] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:58] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:05:59] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:06:00] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:06:06] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:06:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:06:20] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:06:39] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:06:40] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:06:59] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:00] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:04] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:20] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:32] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:40] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:40] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:07:59] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:12] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:21] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:22] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:24] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:27] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:39] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:08:59] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:09:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:09:22] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:10:06] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:10:06] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:10:18] "GET /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 16:10:19] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:10:21] "PUT /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 16:10:22] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:10:26] "PUT /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 16:10:27] "PUT /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 16:10:30] "PUT /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 16:10:39] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:10:39] "PUT /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 16:10:56] "PUT /api/essays/on-the-abomination-of-modern-marketing-in-ai HTTP/1.1" 200 -
+[15/Oct/2026 16:10:59] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:11:03] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:11:04] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:11:04] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:11:07] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:11:07] "GET /api/heartbeat HTTP/1.1" 200 -
+[15/Oct/2026 16:11:08] "GET /api/heartbeat HTTP/1.1" 200 -
+No tab heartbeat for three minutes; stopping Typewriter.

@@ -1,0 +1,58 @@
+/* The original PHRACK WRITER used the browser's native monospace font,
+   plain black / white, and squared-off controls. Keep that character. */
+* { box-sizing: border-box; }
+html { background: #E6D5B3; }
+body { margin: 0; padding: 0; background: #E6D5B3; color: #fff; font: 10px/1.4 monospace; }
+[hidden] { display: none !important; }
+.shell { width: min(438px, calc(100% - 12px)); margin: 0 auto; }
+.bar { box-shadow: 0 0 0 100vmax #000; clip-path: inset(0 -100vmax); font-size: inherit; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; padding: 6px 1px 7px; background: #000; }
+.brand { display: inline-flex; align-items: center; gap: 5px; font-weight: normal; white-space: nowrap; letter-spacing: 0; margin-right: 5px; }
+.stretch { flex: 1 1 9px; }
+button, input, textarea { font: inherit; }
+.bar button { border: 1px solid #666; border-radius: 0; background: #000; color: #fff; min-height: 17px; padding: 2px 5px; cursor: pointer; white-space: nowrap; }
+.bar button:hover, .bar button:focus-visible { color: #000; background: #fff; outline: none; }
+.bar button:disabled { opacity: .5; cursor: default; }
+.problem { width: 100%; color: #ffbaba; line-height: 1.4; }
+.problem button { margin-left: 5px; }
+.paper { min-height: calc(100vh - 35px); background: #E6D5B3; color: #000; padding: 18px 18px 22px; }
+.page-inner { width: 100%; margin: 0; }
+.ascii-rule { margin: 0 0 10px; white-space: pre; overflow: hidden; }
+.archive-heading { margin: 0; }
+.archive-row { display: grid; grid-template-columns: 11ch minmax(0, 1fr); gap: 10px; padding: 7px 0 9px; }
+.archive-date { color: #666; white-space: nowrap; }
+.archive-title { padding: 0; border: 0; border-radius: 0; background: transparent; color: #000; text-align: left; font-weight: bold; text-decoration: underline; text-underline-offset: 1px; cursor: pointer; overflow-wrap: anywhere; }
+.archive-title:hover, .archive-title:focus-visible { color: #fff; background: #000; outline: none; }
+.empty { padding-top: 8px; }
+.empty p { margin: 0 0 6px; }
+.pager { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
+.pager button { color: #000; background: transparent; border: 0; padding: 2px 3px; cursor: pointer; }
+.pager button:hover:not(:disabled) { color: #fff; background: #000; }
+.pager button:disabled { color: #888; cursor: default; }
+.pager .current { text-decoration: underline; font-weight: bold; }
+.essay-title-row { display: flex; align-items: baseline; gap: 1ch; margin: 0 0 13px; }
+.title-prefix { flex: none; }
+#essayTitle { display: block; flex: 1; min-width: 0; width: 100%; padding: 0; margin: 0; border: 0; border-radius: 0; background: transparent; color: #000; font-weight: normal; text-transform: uppercase; letter-spacing: 0; outline: none; }
+#essayTitle:focus-visible { outline: 1px dotted #999; outline-offset: 2px; }
+#essayTitle::placeholder, #essayBody::placeholder { color: #777; opacity: 1; }
+#essayBody { display: block; width: 100%; height: max(276px, calc(100vh - 161px)); min-height: 276px; margin: 0; padding: 0 0 17px; border: 0; border-radius: 0; outline: none; resize: none; background: transparent; color: #000; text-align: left; white-space: pre-wrap; overflow-wrap: break-word; overflow: auto; tab-size: 4; -webkit-text-size-adjust: 100%; }
+@media (max-width: 369px) {
+  body { font-size: 10px; }
+  .shell { width: calc(100% - 9px); }
+  .bar { gap: 3px; padding: 6px 0; }
+  .brand { width: 100%; }
+  .stretch { display: none; }
+  .bar button { min-height: 16px; padding: 2px 4px; }
+  .paper { padding: 18px 18px 21px; }
+  .archive-row { display: block; }
+  .archive-date { display: block; margin-bottom: 3px; }
+  #essayBody { height: calc(100vh - 153px); min-height: 219px; }
+}
+@media print {
+  html, body { background: #fff; color: #000; }
+  .shell { width: 100%; }
+  .bar { display: none; }
+  .paper { min-height: 0; padding: 18px; }
+  #essayBody { overflow: visible; height: auto; }
+}
+
+
