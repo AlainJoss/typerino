@@ -1,58 +1,111 @@
+@font-face {
+  font-family: 'Pixelify Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/PixelifySans-Medium.ttf') format('truetype');
+}
+
 /* The original PHRACK WRITER used the browser's native monospace font,
    plain black / white, and squared-off controls. Keep that character. */
 * { box-sizing: border-box; }
-html { background: #E6D5B3; }
-body { margin: 0; padding: 0; background: #E6D5B3; color: #fff; font: 10px/1.4 monospace; }
+html { background: #eadbbc; }
+body { margin: 0; padding: 0; background: #eadbbc; color: #fff; font: 20.8px/1.4 monospace; }
 [hidden] { display: none !important; }
-.shell { width: min(438px, calc(100% - 12px)); margin: 0 auto; }
-.bar { box-shadow: 0 0 0 100vmax #000; clip-path: inset(0 -100vmax); font-size: inherit; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; padding: 6px 1px 7px; background: #000; }
-.brand { display: inline-flex; align-items: center; gap: 5px; font-weight: normal; white-space: nowrap; letter-spacing: 0; margin-right: 5px; }
-.stretch { flex: 1 1 9px; }
+.shell { width: min(936px, calc(100% - 24.7px)); margin: 0 auto; }
+.bar { position: sticky; top: 0; z-index: 10; box-shadow: 0 0 0 100vmax #000; clip-path: inset(0 -100vmax); font-size: inherit; display: flex; align-items: center; gap: 10.4px; flex-wrap: wrap; padding: 6.5px 1.3px 7.8px; background: #000; }
+.brand { display: inline-flex; align-items: center; gap: 10.4px; font-family: 'Pixelify Sans', monospace; font-size: 2.6em; font-weight: 500; white-space: nowrap; letter-spacing: 0; margin-right: 10.4px; }
+.stretch { flex: 1 1 18.2px; }
 button, input, textarea { font: inherit; }
-.bar button { border: 1px solid #666; border-radius: 0; background: #000; color: #fff; min-height: 17px; padding: 2px 5px; cursor: pointer; white-space: nowrap; }
+.bar button { font-size: .9em; border: 1.3px solid #666; border-radius: 0; background: #000; color: #fff; min-height: 31.2px; padding: 1.3px 6.5px; cursor: pointer; white-space: nowrap; }
 .bar button:hover, .bar button:focus-visible { color: #000; background: #fff; outline: none; }
 .bar button:disabled { opacity: .5; cursor: default; }
 .problem { width: 100%; color: #ffbaba; line-height: 1.4; }
-.problem button { margin-left: 5px; }
-.paper { min-height: calc(100vh - 35px); background: #E6D5B3; color: #000; padding: 18px 18px 22px; }
+.problem button { margin-left: 10.4px; }
+.paper { min-height: calc(100vh - 72.8px); background: #eadbbc; color: #000; padding: 37.7px 37.7px 45.5px; }
 .page-inner { width: 100%; margin: 0; }
-.ascii-rule { margin: 0 0 10px; white-space: pre; overflow: hidden; }
+.ascii-rule { margin: 0 0 20.8px; white-space: pre; overflow: hidden; }
 .archive-heading { margin: 0; }
-.archive-row { display: grid; grid-template-columns: 11ch minmax(0, 1fr); gap: 10px; padding: 7px 0 9px; }
+.archive-row { display: grid; grid-template-columns: 11ch minmax(0, 1fr); gap: 20.8px; padding: 14.3px 0 18.2px; }
 .archive-date { color: #666; white-space: nowrap; }
-.archive-title { padding: 0; border: 0; border-radius: 0; background: transparent; color: #000; text-align: left; font-weight: bold; text-decoration: underline; text-underline-offset: 1px; cursor: pointer; overflow-wrap: anywhere; }
+.archive-title { padding: 0; border: 0; border-radius: 0; background: transparent; color: #000; text-align: left; font-weight: bold; text-decoration: underline; text-underline-offset: 1.3px; cursor: pointer; overflow-wrap: anywhere; }
 .archive-title:hover, .archive-title:focus-visible { color: #fff; background: #000; outline: none; }
-.empty { padding-top: 8px; }
-.empty p { margin: 0 0 6px; }
-.pager { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px; }
-.pager button { color: #000; background: transparent; border: 0; padding: 2px 3px; cursor: pointer; }
+.empty { padding-top: 16.9px; }
+.empty p { margin: 0 0 13px; }
+.pager { display: flex; flex-wrap: wrap; gap: 10.4px; margin-top: 28.6px; }
+.pager button { color: #000; background: transparent; border: 0; padding: 3.9px 6.5px; cursor: pointer; }
 .pager button:hover:not(:disabled) { color: #fff; background: #000; }
 .pager button:disabled { color: #888; cursor: default; }
 .pager .current { text-decoration: underline; font-weight: bold; }
-.essay-title-row { display: flex; align-items: baseline; gap: 1ch; margin: 0 0 13px; }
-.title-prefix { flex: none; }
-#essayTitle { display: block; flex: 1; min-width: 0; width: 100%; padding: 0; margin: 0; border: 0; border-radius: 0; background: transparent; color: #000; font-weight: normal; text-transform: uppercase; letter-spacing: 0; outline: none; }
-#essayTitle:focus-visible { outline: 1px dotted #999; outline-offset: 2px; }
+.essay-title-row { display: flex; align-items: baseline; gap: 1ch; margin: 0 0 27.3px; }
+#essayTitle { font-size: 1.5em; display: block; flex: 1; min-width: 0; width: 100%; padding: 0; margin: 0; border: 0; border-radius: 0; background: transparent; color: #000; font-weight: normal; text-transform: uppercase; letter-spacing: 0; outline: none; }
+#essayTitle:focus-visible { outline: 1.3px dotted #999; outline-offset: 3.9px; }
 #essayTitle::placeholder, #essayBody::placeholder { color: #777; opacity: 1; }
-#essayBody { display: block; width: 100%; height: max(276px, calc(100vh - 161px)); min-height: 276px; margin: 0; padding: 0 0 17px; border: 0; border-radius: 0; outline: none; resize: none; background: transparent; color: #000; text-align: left; white-space: pre-wrap; overflow-wrap: break-word; overflow: auto; tab-size: 4; -webkit-text-size-adjust: 100%; }
-@media (max-width: 369px) {
-  body { font-size: 10px; }
-  .shell { width: calc(100% - 9px); }
-  .bar { gap: 3px; padding: 6px 0; }
+#essayBody { display: block; width: 100%; height: max(574.6px, calc(100vh - 335.4px)); min-height: 574.6px; margin: 0; padding: 0 0 35.1px; border: 0; border-radius: 0; outline: none; resize: none; background: transparent; color: #000; text-align: left; white-space: pre-wrap; overflow-wrap: break-word; overflow: auto; tab-size: 4; -webkit-text-size-adjust: 100%; }
+@media (max-width: 832px) {
+  body { font-size: 20.8px; }
+  .shell { width: calc(100% - 18.2px); }
+  .bar { gap: 6.5px; padding: 6.5px 0; }
   .brand { width: 100%; }
   .stretch { display: none; }
-  .bar button { min-height: 16px; padding: 2px 4px; }
-  .paper { padding: 18px 18px 21px; }
+  .bar button { min-height: 28.6px; padding: 1.3px 6.5px; }
+  .paper { padding: 37.7px 37.7px 44.2px; }
   .archive-row { display: block; }
-  .archive-date { display: block; margin-bottom: 3px; }
-  #essayBody { height: calc(100vh - 153px); min-height: 219px; }
+  .archive-date { display: block; margin-bottom: 6.5px; }
+  #essayBody { height: calc(100vh - 318.5px); min-height: 455px; }
 }
 @media print {
   html, body { background: #fff; color: #000; }
   .shell { width: 100%; }
   .bar { display: none; }
-  .paper { min-height: 0; padding: 18px; }
+  .paper { min-height: 0; padding: 37.7px; }
   #essayBody { overflow: visible; height: auto; }
 }
 
 
+
+#deleteDialog, #linkDialog { width: min(665.6px, calc(100% - 75.4px)); padding: 41.6px; border: 1.3px solid #000; border-radius: 0; background: #E6D5B3; color: #000; font: inherit; }
+#deleteDialog::backdrop, #linkDialog::backdrop { background: rgb(0 0 0 / 45%); }
+#deleteDialog h2, #linkDialog h2 { margin: 0 0 24.7px; font: inherit; }
+#deleteDialog p { margin: 0 0 24.7px; overflow-wrap: anywhere; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 16.9px; margin-top: 41.6px; }
+.dialog-actions button { border: 1.3px solid #000; border-radius: 0; background: transparent; color: #000; padding: 7.8px 16.9px; cursor: pointer; }
+.dialog-actions button:hover, .dialog-actions button:focus-visible { background: #000; color: #E6D5B3; outline: 1.3px solid #000; outline-offset: 3.9px; }
+
+/* Compact scrollbars for the page, editor, and dialog. */
+html, #essayBody, #deleteDialog {
+  scrollbar-width: thin;
+  scrollbar-color: #8c7d60 #E6D5B3;
+}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #E6D5B3; }
+::-webkit-scrollbar-thumb { background: #8c7d60; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #695c44; }
+::-webkit-scrollbar-corner { background: #E6D5B3; }
+
+
+#essayBody:empty::before { content: attr(data-placeholder); color: #777; pointer-events: none; }
+#essayBody h2 { font: inherit; font-weight: bold; text-transform: uppercase; margin: 1em 0 .75em; }
+#essayBody h2:first-child { margin-top: 0; }
+#essayBody p, #essayBody div { margin: 0; }
+#essayBody ul, #essayBody ol { margin: 0; padding-left: 1.5em; }
+#essayBody li { padding-left: .25em; }
+#essayBody strong, #essayBody b { font-weight: bold; }
+#essayBody em, #essayBody i { font-style: italic; }
+
+/* Keep the window fixed; only the document content scrolls. */
+@media screen {
+  html, body { height: 100%; overflow: hidden; }
+  .shell { height: 100vh; height: 100dvh; display: flex; flex-direction: column; }
+  .bar { flex: none; }
+  .paper { flex: 1; min-height: 0; overflow: hidden; }
+  #editorView, #editorView .page-inner { height: 100%; min-height: 0; }
+  #editorView .page-inner { display: flex; flex-direction: column; }
+  .essay-title-row { flex: none; }
+  #essayBody { flex: 1; height: auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  #archiveView { height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+}
+
+#linkUrl { display: block; width: 100%; margin-top: .5em; padding: .4em; border: 1px solid #000; border-radius: 0; color: #000; background: transparent; }
+#linkError { color: #8b1818; }
+#essayBody a { color: inherit; text-decoration: underline; text-underline-offset: .15em; }

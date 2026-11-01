@@ -6,6 +6,7 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="TYPERINO: a minimal local writing desk with a plain-text essay archive.">
   <title>typerino</title>
+  <link rel="icon" type="image/png" href="/icon-no-background.png">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -21,8 +22,6 @@
   <main class="paper">
     <section id="archiveView" aria-label="Essay archive">
       <div class="page-inner">
-        <div class="archive-heading">ARCHIVE</div>
-        <div class="ascii-rule" aria-hidden="true">-------</div>
         <div id="archiveList"></div>
         <div id="emptyView" class="empty" hidden><p>NOTHING HERE YET.</p><p>Press [ + NEW ] to write your first essay.</p></div>
         <nav id="pagination" class="pager" aria-label="Archive pages" hidden></nav>
@@ -31,21 +30,230 @@
     <section id="editorView" aria-label="Essay editor" hidden>
       <div class="page-inner">
         <div class="essay-title-row">
-          <span class="title-prefix" aria-hidden="true">---</span>
-          <input id="essayTitle" type="text" maxlength="150" placeholder="UNTITLED" aria-label="Essay title" spellcheck="false" autocomplete="off">
+          <input id="essayTitle" type="text" maxlength="150" placeholder="UNTITLED" aria-label="Essay title" spellcheck="false" autocorrect="off" autocomplete="off" autocapitalize="off">
         </div>
-        <textarea id="essayBody" aria-label="Essay text" placeholder="..." spellcheck="true"></textarea>
+        <div id="essayBody" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Essay text" data-placeholder="..." title="Section heading: ⌘⇧S · Normal text: ⌘⌥0 · Bold: ⌘B · Italic: ⌘I · Link: ⌘K" spellcheck="false" autocorrect="off" autocomplete="off" autocapitalize="off"></div>
       </div>
     </section>
   </main>
 </div>
+<dialog id="deleteDialog" aria-labelledby="deleteDialogTitle" aria-describedby="deleteDialogDescription">
+  <form method="dialog">
+    <h2 id="deleteDialogTitle">DELETE ESSAY?</h2>
+    <p id="deleteDialogEssay"></p>
+    <p id="deleteDialogDescription">This permanently deletes the essay and its text file.</p>
+    <div class="dialog-actions">
+      <button type="submit" value="cancel" autofocus>[ CANCEL ]</button>
+      <button type="submit" value="delete">[ DELETE ]</button>
+    </div>
+  </form>
+</dialog>
+<dialog id="linkDialog" aria-labelledby="linkDialogTitle">
+  <form id="linkForm">
+    <h2 id="linkDialogTitle">ATTACH LINK</h2>
+    <label for="linkUrl">URL</label>
+    <input id="linkUrl" type="text" inputmode="url" placeholder="https://example.com" autocomplete="off" spellcheck="false" required autofocus>
+    <p id="linkError" role="alert" hidden>Enter a valid http, https, or mailto link.</p>
+    <div class="dialog-actions">
+      <button id="cancelLink" type="button">[ CANCEL ]</button>
+      <button type="submit">[ APPLY ]</button>
+    </div>
+  </form>
+</dialog>
 <script>
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
   const archiveView = $('archiveView'), editorView = $('editorView');
   const titleInput = $('essayTitle'), bodyInput = $('essayBody');
-  const PAGE_SIZE = 10;
+  // The editor renders safe DOM nodes; formatting is saved as readable Markdown.
+  function appendInline(parent, text) {
+    const linkPattern = /\[([^\]\n]+)\]\(([^\s)]+)\)/g;
+    let link, position = 0;
+    while ((link = linkPattern.exec(text))) {
+      appendEmphasis(parent, text.slice(position, link.index));
+      const href = validLink(link[2], false);
+      if (href) {
+        const anchor = document.createElement('a');
+        anchor.href = href;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        appendEmphasis(anchor, link[1]);
+        parent.append(anchor);
+      } else parent.append(document.createTextNode(link[0]));
+      position = linkPattern.lastIndex;
+    }
+    appendEmphasis(parent, text.slice(position));
+  }
+  function appendEmphasis(parent, text) {
+    const pattern = /\*\*\*([^\n]+?)\*\*\*|\*\*([^\n]+?)\*\*(?!\*)|\*([^*\n]+)\*/g;
+    let start = 0, match;
+    while ((match = pattern.exec(text))) {
+      parent.append(document.createTextNode(text.slice(start, match.index)));
+      const node = document.createElement(match[3] !== undefined ? 'em' : 'strong');
+      if (match[1] !== undefined) {
+        const italic = document.createElement('em');
+        appendInline(italic, match[1]);
+        node.append(italic);
+      } else appendInline(node, match[2] ?? match[3]);
+      parent.append(node);
+      start = pattern.lastIndex;
+    }
+    parent.append(document.createTextNode(text.slice(start)));
+  }
+  function bodyFragment(text) {
+    const fragment = document.createDocumentFragment();
+    let list = null;
+    for (const line of text.split('\n')) {
+      const bullet = /^- (.*)$/.exec(line);
+      if (bullet) {
+        if (!list) { list = document.createElement('ul'); fragment.append(list); }
+        const item = document.createElement('li');
+        appendInline(item, bullet[1]);
+        if (!item.textContent) item.append(document.createElement('br'));
+        list.append(item);
+        continue;
+      }
+      list = null;
+      const heading = /^## (.*)$/.exec(line);
+      const node = document.createElement(heading ? 'h2' : 'div');
+      appendInline(node, heading ? heading[1] : line);
+      if (!node.textContent) node.append(document.createElement('br'));
+      fragment.append(node);
+    }
+    return fragment;
+  }
+  function renderBody(text) {
+    bodyInput.replaceChildren(bodyFragment(text));
+    if (!text) bodyInput.replaceChildren();
+  }
+  function inlineText(node) {
+    if (node.nodeType === 3) return node.nodeValue;
+    if (node.nodeName === 'BR') return '\n';
+    const text = Array.from(node.childNodes, inlineText).join('');
+    if (node.nodeName === 'A') {
+      const href = validLink(node.getAttribute('href'), false);
+      if (href) return '[' + text + '](' + href.replace(/\(/g, '%28').replace(/\)/g, '%29') + ')';
+    }
+    if (/^(STRONG|B)$/.test(node.nodeName) || node.style?.fontWeight === 'bold' || node.style?.fontWeight === '700') return text ? '**' + text + '**' : '';
+    if (/^(EM|I)$/.test(node.nodeName) || node.style?.fontStyle === 'italic') return text ? '*' + text + '*' : '';
+    return text;
+  }
+  function readBody(root) {
+    const lines = [];
+    let inline = '';
+    const flush = () => { if (inline) { lines.push(inline); inline = ''; } };
+    for (const node of root.childNodes) {
+      if (/^(UL|OL)$/.test(node.nodeName)) {
+        flush();
+        for (const item of node.children) lines.push('- ' + inlineText(item).replace(/\n$/, ''));
+      } else if (/^(DIV|P|H[1-6])$/.test(node.nodeName)) {
+        flush();
+        const nestedBlocks = Array.from(node.children).some(child => /^(DIV|P|UL|OL|H[1-6])$/.test(child.nodeName));
+        let text = nestedBlocks ? readBody(node) : inlineText(node);
+        if (node.childNodes.length === 1 && node.firstChild.nodeName === 'BR') text = '';
+        else text = text.replace(/\n$/, '');
+        lines.push((/^H[1-6]$/.test(node.nodeName) ? '## ' : '') + text);
+      } else inline += inlineText(node);
+    }
+    flush();
+    return lines.join('\n');
+  }
+  Object.defineProperty(bodyInput, 'value', {
+    get() { return readBody(bodyInput); },
+    set(text) { renderBody(text); }
+  });
+  function editorBlock() {
+    let node = window.getSelection()?.anchorNode;
+    if (node?.nodeType === 3) node = node.parentElement;
+    while (node && node !== bodyInput) {
+      if (/^(DIV|P|LI|H[1-6])$/.test(node.nodeName)) return node;
+      node = node.parentElement;
+    }
+    return bodyInput;
+  }
+  function editorCommand(command, value = null) {
+    document.execCommand(command, false, value);
+    changed();
+  }
+  function validLink(value, addScheme = true) {
+    let text = (value || '').trim();
+    if (!text || /[\s<>]/.test(text)) return null;
+    if (addScheme && !/^[a-z][a-z0-9+.-]*:/i.test(text)) text = 'https://' + text;
+    try {
+      const url = new URL(text);
+      if (!['http:', 'https:', 'mailto:'].includes(url.protocol)) return null;
+      if (url.protocol !== 'mailto:' && !url.hostname) return null;
+      if (url.protocol === 'mailto:' && !url.pathname) return null;
+      return url.href;
+    } catch (_) { return null; }
+  }
+  let linkRange = null, linkToApply = null;
+  function openLinkDialog() {
+    const selection = window.getSelection();
+    if (!selection.rangeCount || !bodyInput.contains(selection.anchorNode) || !bodyInput.contains(selection.focusNode)) return;
+    let node = selection.anchorNode;
+    if (node.nodeType === 3) node = node.parentElement;
+    const anchor = node.closest('a');
+    linkRange = selection.getRangeAt(0).cloneRange();
+    if (selection.isCollapsed) {
+      if (!anchor || !bodyInput.contains(anchor)) return;
+      linkRange.selectNodeContents(anchor);
+    }
+    linkToApply = null;
+    $('linkUrl').value = anchor?.getAttribute('href') || '';
+    $('linkError').hidden = true;
+    $('linkDialog').showModal();
+    $('linkUrl').select();
+  }
+  $('cancelLink').addEventListener('click', () => $('linkDialog').close());
+  $('linkForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const href = validLink($('linkUrl').value);
+    if (!href) { $('linkError').hidden = false; $('linkUrl').focus(); return; }
+    linkToApply = href;
+    $('linkDialog').close();
+  });
+  $('linkDialog').addEventListener('close', () => {
+    bodyInput.focus({preventScroll: true});
+    if (!linkRange) return;
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(linkRange);
+    if (linkToApply) {
+      editorCommand('createLink', linkToApply);
+      for (const anchor of bodyInput.querySelectorAll('a')) {
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+      }
+    }
+    linkRange = null;
+    linkToApply = null;
+  });
+  bodyInput.addEventListener('click', event => {
+    const anchor = event.target.closest('a');
+    if (anchor && (event.metaKey || event.ctrlKey)) {
+      const href = validLink(anchor.getAttribute('href'), false);
+      if (href) { event.preventDefault(); window.open(href, '_blank', 'noopener,noreferrer'); }
+    }
+  });
+  function toggleHeading() {
+    const heading = /^H[1-6]$/.test(editorBlock().nodeName);
+    editorCommand('formatBlock', heading ? 'div' : 'h2');
+  }
+  function autoBullet(event) {
+    if (event.isComposing || event.inputType !== 'insertText') return;
+    const block = editorBlock();
+    if (block.nodeName === 'LI' || block.textContent !== '- ') return;
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(block);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('delete');
+    document.execCommand('insertUnorderedList');
+  }
+  const PAGE_SIZE = 50;
   const DRAFT_ID = 'new-unsaved-draft';
   let essays = [], currentId = null, currentEssay = null, page = 0;
   let revision = 0, savedRevision = 0, saveTimer = null;
@@ -231,20 +439,26 @@
     } catch(error) { showProblem(error.message, true); }
     finally { busy = false; }
   }
+  function confirmDelete() {
+    const dialog = $('deleteDialog');
+    $('deleteDialogEssay').textContent = titleText(titleInput.value);
+    dialog.returnValue = 'cancel';
+    return new Promise(resolve => {
+      dialog.addEventListener('close', () => resolve(dialog.returnValue === 'delete'), {once: true});
+      dialog.showModal();
+    });
+  }
   async function deleteEssay() {
     if (!currentId || busy) return;
-    if (currentId === DRAFT_ID) {
-      await archive();
-      return;
-    }
-    if (!confirm(`Delete “${titleText(titleInput.value)}”? Its .txt file will be deleted from disk.`)) return;
     busy = true;
     try {
+      if (!(await confirmDelete())) return;
       clearTimeout(saveTimer);
-      if (!(await flushEdits())) return;
       await pendingWrite.catch(() => {});
-      const deletedId = currentId;
-      await api('/api/essays/' + encodeURIComponent(deletedId), {method:'DELETE'});
+      if (currentId !== DRAFT_ID) {
+        if (!(await flushEdits())) return;
+        await api('/api/essays/' + encodeURIComponent(currentId), {method:'DELETE'});
+      }
       currentId = null;
       await loadArchive();
       showArchiveView();
@@ -258,12 +472,78 @@
     titleInput.setSelectionRange(begin,end);
     changed();
   });
-  bodyInput.addEventListener('input', changed);
-  bodyInput.addEventListener('keydown',event => {
-    if (event.key === 'Tab' && !event.metaKey && !event.ctrlKey && !event.altKey) {
+  bodyInput.addEventListener('input', event => { autoBullet(event); changed(); });
+  function cleanClipboardHtml(html) {
+    const source = new DOMParser().parseFromString(html, 'text/html');
+    const target = document.createElement('div');
+    const copy = (node, parent) => {
+      if (node.nodeType === 3) { parent.append(document.createTextNode(node.nodeValue)); return; }
+      if (node.nodeType !== 1 || /^(SCRIPT|STYLE|IFRAME|OBJECT|EMBED|SVG|MATH|META|LINK|TEMPLATE|INPUT|BUTTON|TEXTAREA|SELECT)$/.test(node.nodeName)) return;
+      if (node.nodeName === 'IMG') {
+        if (node.getAttribute('alt')) parent.append(document.createTextNode(node.getAttribute('alt')));
+        return;
+      }
+      const tag = node.nodeName.toLowerCase();
+      const allowed = ['a', 'b', 'strong', 'em', 'i', 'br', 'p', 'div', 'ul', 'ol', 'li'];
+      let name = /^h[1-6]$/.test(tag) ? 'h2' : allowed.includes(tag) ? tag : null;
+      const href = tag === 'a' ? validLink(node.getAttribute('href'), false) : null;
+      if (tag === 'a' && !href) name = null;
+      let destination = parent;
+      if (name) {
+        destination = document.createElement(name);
+        if (name === 'a') {
+          destination.href = href;
+          destination.target = '_blank';
+          destination.rel = 'noopener noreferrer';
+        }
+        parent.append(destination);
+      }
+      for (const child of node.childNodes) copy(child, destination);
+    };
+    for (const node of source.body.childNodes) copy(node, target);
+    return target.innerHTML;
+  }
+  bodyInput.addEventListener('paste', event => {
+    event.preventDefault();
+    const clipboard = event.clipboardData;
+    const html = clipboard.getData('text/html');
+    const text = clipboard.getData('text/plain');
+    if (html) {
+      const cleaned = cleanClipboardHtml(html);
+      if (cleaned) { editorCommand('insertHTML', cleaned); return; }
+    }
+    if (/\[[^\]\n]+\]\([^\s)]+\)/.test(text)) {
+      const container = document.createElement('div');
+      container.append(bodyFragment(text));
+      editorCommand('insertHTML', container.innerHTML);
+    } else editorCommand('insertText', text);
+  });
+  bodyInput.addEventListener('keydown', event => {
+    const mod = event.metaKey || event.ctrlKey;
+    if (mod && !event.altKey && event.key.toLowerCase() === 'k') {
       event.preventDefault();
-      bodyInput.setRangeText('    ',bodyInput.selectionStart,bodyInput.selectionEnd,'end');
+      event.stopPropagation();
+      openLinkDialog();
+    } else if (mod && !event.altKey && ['b', 'i'].includes(event.key.toLowerCase())) {
+      event.preventDefault();
+      editorCommand(event.key.toLowerCase() === 'b' ? 'bold' : 'italic');
+    } else if (mod && event.shiftKey && !event.altKey && event.key.toLowerCase() === 's') {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleHeading();
+    } else if (mod && event.altKey && event.code === 'Digit0') {
+      event.preventDefault();
+      editorCommand('formatBlock', 'div');
+    } else if (event.key === 'Enter' && !event.shiftKey && /^H[1-6]$/.test(editorBlock().nodeName)) {
+      event.preventDefault();
+      document.execCommand('insertParagraph');
+      document.execCommand('formatBlock', false, 'div');
+      // The normal paragraph starts without inherited heading formatting.
+      document.execCommand('removeFormat');
       changed();
+    } else if (event.key === 'Tab' && !mod && !event.altKey) {
+      event.preventDefault();
+      editorCommand('insertText', '    ');
     }
   });
   $('archiveBtn').addEventListener('click',archive);
@@ -277,8 +557,9 @@
     }
   });
   document.addEventListener('keydown',event => {
+    if ($('deleteDialog').open || $('linkDialog').open) return;
     const mod = event.metaKey || event.ctrlKey;
-    if (mod && event.key.toLowerCase()==='s') {
+    if (mod && !event.shiftKey && !event.altKey && event.key.toLowerCase()==='s') {
       event.preventDefault();
       if (currentId) void flushEdits();
     }

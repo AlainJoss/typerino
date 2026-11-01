@@ -184,8 +184,9 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         self.server.activity.touch()
         route = urlsplit(self.path).path
-        if route in ('/', '/index.html', '/style.css', '/icon-no-background.png'):
+        if route in ('/', '/index.html', '/style.css', '/icon-no-background.png', '/fonts/PixelifySans-Medium.ttf'):
             asset, content_type = {
+                '/fonts/PixelifySans-Medium.ttf': ('fonts/PixelifySans-Medium.ttf', 'font/ttf'),
                 '/style.css': ('style.css', 'text/css; charset=utf-8'),
                 '/icon-no-background.png': ('icon-no-background.png', 'image/png'),
             }.get(route, ('index.html', 'text/html; charset=utf-8'))
